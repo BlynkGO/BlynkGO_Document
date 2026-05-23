@@ -8,7 +8,9 @@
 - Assignment: `btn = "Label Text";` (เลือกกำหนดได้)
 - Event: `onClicked(GWIDGET_CB{ ... })`
 
-## Code
+# GButton Reference
+
+## Basic Usage
 ```cpp
 #include <BlynkGOv5.h>
 
@@ -16,14 +18,32 @@ GButton btn;
 
 void setup(){
   BlynkGO.begin();
-
-  // หมายเหตุ: หากไม่กำหนดข้อความ BlynkGO จะแสดงค่าเริ่มต้นให้
   btn = "ปุ่มกด";
-  
-  // Callback เมื่อมีการคลิก
   btn.onClicked(GWIDGET_CB{
     Serial.println("Clicked");
   });
+}
+
+void loop(){
+  BlynkGO.update();
+}
+```
+
+## Array Usage (Pointer Offset)
+```cpp
+#include <BlynkGOv5.h>
+
+GButton btn[30];
+
+void setup(){
+  BlynkGO.begin();
+  for(int i = 0; i < 30; i++){
+    btn[i] = String("ปุ่ม " + String(i+1)).c_str();
+    btn[i].onClicked(GWIDGET_CB{
+      int ii = static_cast<GButton*>(widget) - &btn[0];
+      Serial.println("Clicked: " + String(ii+1));
+    });
+  }
 }
 
 void loop(){
