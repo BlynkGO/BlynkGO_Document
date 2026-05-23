@@ -1,0 +1,12 @@
+site_name: BlynkGO v5 Documentation
+theme:
+  name: material
+
+nav:
+  - หน้าแรก: index.md
+  - เริ่มต้นใช้งาน: get-started.md
+  - ตัวอย่างโค้ด:
+      - ภาพรวมตัวอย่าง: examples/index.md
+      - GWidgets:
+          - ปุ่มกด: examples/GWidgets/GButton.md
+          - ข้อความ: examples/GWidgets/GLabel.md
