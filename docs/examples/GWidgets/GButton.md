@@ -60,9 +60,7 @@ Reason:
 
 ```cpp
 btn[i].onClicked(GWIDGET_CB {
-    int ii =
-        static_cast<GButton*>(widget)
-        - &btn[0];
+    int ii = static_cast<GButton*>(widget) - &btn[0];
 });
 ```
 
@@ -122,29 +120,18 @@ void setup() {
     BlynkGO.begin();
 
     for(int i = 0; i < 30; i++) {
-
         btn[i] = StringX::printf("BTN %d", i+1);
-
         btn[i].size(80,50);
 
         int x = 20 + (i % 5) * 90;
         int y = 20 + (i / 5) * 70;
 
         btn[i].position(x, y);
-
         btn[i].color(TFT_COLOR_HSV(i*12,100,100));
-
         btn[i].onClicked(GWIDGET_CB {
-
-            int ii =
-                static_cast<GButton*>(widget)
-                - &btn[0];
-
+            int ii = static_cast<GButton*>(widget) - &btn[0];
             Serial.printf("Button %d clicked\n", ii + 1);
-
-            static_cast<GButton*>(widget)
-                ->color(random(0xFFFFFF));
-
+            static_cast<GButton*>(widget)->color(random(0xFFFFFF));
         });
     }
 }
